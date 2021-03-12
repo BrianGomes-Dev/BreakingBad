@@ -10,38 +10,21 @@ import RxCocoa
 import RxSwift
 import SDWebImage
 class CharacterViewController: UIViewController {
-//    private let apiClient = ModelService()
+
     private let disposeBag = DisposeBag()
    private let service = ModelService()
-    private var viewModel : CharacterViewModel!
+    
   
     @IBOutlet weak var tableView: UITableView!
     var model = [CharactersModel]()
     
-//    static func instanstiate(viewmodel : CharacterViewModel) -> CharacterViewController {
-//        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-//        let viewController = storyboard.instantiateInitialViewController() as! CharacterViewController
-//        return viewController
-//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = viewModel.title
-//        viewModel.fetchCharacterviewModel().observe(on: MainScheduler.instance).bind(to : tableView.rx.items(cellIdentifier: "characterCell")) { index , viewModel, cell in
-//            cell.textLabel?.text = ""
-//            print(viewModel.displayBirthday)
-//            print(viewModel.displayName)
-//            print(viewModel.displayOccupation)
-//            print(viewModel.displayNickname)
-//            print(viewModel.displayBirthday)
-//            print(viewModel.displayBirthday)
-//            print(viewModel.displayBirthday)
-//            print(viewModel.displayImage)
-//
-//
-//        }.disposed(by: disposeBag)
+
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.register(UINib(nibName: "CharacterTableViewCell", bundle: nil), forCellReuseIdentifier: "characterCell")
+
         
                service.fetchCharacters().subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
@@ -51,9 +34,9 @@ class CharacterViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                
-//                self.tableView.reloadData()
+
                }).disposed(by: disposeBag)
-//        self.tableView.reloadData()
+
       
     }
     
@@ -62,6 +45,8 @@ class CharacterViewController: UIViewController {
 
 
 }
+
+// table view data source and delegates
 extension CharacterViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.count

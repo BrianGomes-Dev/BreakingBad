@@ -6,7 +6,10 @@
 //
 
 import Foundation
+
 struct CharactersModel : Codable {
+  
+    
     
     
         var charID: Int?

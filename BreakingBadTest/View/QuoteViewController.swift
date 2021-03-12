@@ -9,28 +9,22 @@ import UIKit
 import RxCocoa
 import RxSwift
 class QuoteViewController: UIViewController {
-    private var viewModel : QuoteViewModel!
+   private  let service = ModelService()
     @IBOutlet weak var tableView: UITableView!
     var model = [QuotesModel]()
     private let disposeBag = DisposeBag()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = viewModel.title
-//        viewModel.fetchQuoteviewModel().observe(on: MainScheduler.instance).bind(to : tableView.rx.items(cellIdentifier: "quoteCell")) { index , viewModel, cell in
-//
-//            print(viewModel.displayId)
-//            print(viewModel.displayQuote)
-//            print(viewModel.displayAuthor)
-//
-//        }
-        // Do any additional setup after loading the view.
+
         tableView.delegate = self
         tableView.dataSource = self
-        let service = ModelService()
+        // get the quotes with rxswift
                service.fetchQuotes().subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
                 print(model)
-//
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -39,6 +33,8 @@ class QuoteViewController: UIViewController {
     
 
 }
+
+// table view data source and delegtes
 extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.count

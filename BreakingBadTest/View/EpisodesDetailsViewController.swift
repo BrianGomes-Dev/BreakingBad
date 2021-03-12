@@ -17,13 +17,15 @@ class EpisodesDetailsViewController: UIViewController {
     @IBOutlet weak var seasonLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var episodeLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // display episodes by id with rxswift
         service.fetchEpisodesWithId(id: ID ?? 1).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                 self.charactersLabel.text = model[0].characters!.joined(separator: ",")
-//                self.episodeidlLabel.text = "\(model[0].episodeID!)"
+
                 self.seasonLabel.text = model[0].season
                 self.titleLabel.text = model[0].title
                 self.episodeLabel.text = model[0].airDate

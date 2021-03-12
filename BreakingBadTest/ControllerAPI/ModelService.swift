@@ -17,6 +17,9 @@ class ModelService : ModelServiceProtocol {
    
     
     // create a method for calling api which is return a Observable
+    
+    
+    // fetching the characters from the API
     func fetchCharacters() -> Observable<[CharactersModel]> {
             
             return Observable.create { observer -> Disposable in
@@ -31,6 +34,7 @@ class ModelService : ModelServiceProtocol {
                     do {
                         let character = try JSONDecoder().decode([CharactersModel].self, from: data)
                         observer.onNext(character)
+
                     } catch {
                         print("error is : \(error.localizedDescription)")
                         observer.onError(error)
@@ -42,6 +46,8 @@ class ModelService : ModelServiceProtocol {
                 }
             }
         }
+    
+    // fetch a single character with its id
     func fetchCharactersWithId(id: Int) -> Observable<[CharactersModel]> {
             
             return Observable.create { observer -> Disposable in
@@ -67,6 +73,8 @@ class ModelService : ModelServiceProtocol {
                 }
             }
         }
+    
+    // fetch a single episode with its id
     func fetchEpisodesWithId(id : Int) -> Observable<[EpisodesModel]> {
             
             return Observable.create { observer -> Disposable in
@@ -92,7 +100,7 @@ class ModelService : ModelServiceProtocol {
                 }
             }
         }
-
+// fetch episodes from api
     func fetchEpisodes() -> Observable<[EpisodesModel]> {
             
             return Observable.create { observer -> Disposable in
@@ -118,6 +126,8 @@ class ModelService : ModelServiceProtocol {
                 }
             }
         }
+    
+   // fetch quotes with its id
     func fetchQuoteswithID(id : Int) -> Observable<[QuotesModel]> {
             
             return Observable.create { observer -> Disposable in
@@ -143,6 +153,8 @@ class ModelService : ModelServiceProtocol {
                 }
             }
         }
+    
+    // fetch quotes from api
     func fetchQuotes() -> Observable<[QuotesModel]> {
             
             return Observable.create { observer -> Disposable in

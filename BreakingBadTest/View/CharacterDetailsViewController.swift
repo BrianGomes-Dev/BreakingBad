@@ -23,7 +23,7 @@ class CharacterDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-//        if let name = name {
+// display characters by id with rxswift
         service.fetchCharactersWithId(id: charID ?? 1).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                 self.birthdayLabel.text = model[0].birthday
@@ -38,7 +38,7 @@ class CharacterDetailsViewController: UIViewController {
            
      
         }).disposed(by: disposeBag)
-//    }
+
     }
 
     @IBAction func backBtnPressed(_ sender: Any) {

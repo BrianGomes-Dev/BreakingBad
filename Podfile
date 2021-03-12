@@ -10,6 +10,7 @@ pod 'RxSwift'
 pod 'Alamofire', '~> 5.2'
 pod 'RxCocoa'
 pod 'SDWebImage', '~> 5.0'
+pod 'Locksmith'
 
   target 'BreakingBadTestTests' do
     inherit! :search_paths

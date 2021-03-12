@@ -17,14 +17,14 @@ class QuotesDetailsViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // display quotes by id with rxswift
         service.fetchQuoteswithID(id : quoteID ?? 1).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                
 
                 self.quoteLabel.text = model[0].quote
                 self.authorLabel.text = model[0].author
-//                self.quoteidLabel.text = model[0].quote_id
+
                     
                 
                 
