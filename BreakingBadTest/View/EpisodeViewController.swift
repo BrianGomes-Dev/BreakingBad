@@ -23,7 +23,7 @@ class EpisodeViewController: UIViewController {
         tableView.dataSource = self
         // get the episodes with rxswift
        
-               service.fetchEpisodes().subscribe(onNext:{ model in
+               service.fetchEpisodes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
                
                 DispatchQueue.main.async {

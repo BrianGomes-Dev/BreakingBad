@@ -24,7 +24,7 @@ class CharacterDetailsViewController: UIViewController {
         super.viewDidLoad()
        
 // display characters by id with rxswift
-        service.fetchCharactersWithId(id: charID ?? 1).subscribe(onNext:{ model in
+        service.fetchCharactersWithId(id: charID ?? 1, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                 self.birthdayLabel.text = model[0].birthday
                 self.nicknameLabel.text = model[0].nickname

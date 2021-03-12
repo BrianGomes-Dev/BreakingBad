@@ -39,4 +39,20 @@ class BreakingBadTestUITests: XCTestCase {
             }
         }
     }
+    // fake testing...with fake url
+    func fakeCharacterDataTask(_ url: URL, _ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        XCTAssertEqual(url, URL(string: ""))
+        completionHandler(Data(), nil, nil)
+        return URLSessionDataTask()
+    }
+    func fakeEpisodeDataTask(_ url: URL, _ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        XCTAssertEqual(url, URL(string: ""))
+        completionHandler(Data(), nil, nil)
+        return URLSessionDataTask()
+    }
+    func fakeQuotesDataTask(_ url: URL, _ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        XCTAssertEqual(url, URL(string: ""))
+        completionHandler(Data(), nil, nil)
+        return URLSessionDataTask()
+    }
 }

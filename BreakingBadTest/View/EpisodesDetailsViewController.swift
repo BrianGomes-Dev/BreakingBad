@@ -22,7 +22,7 @@ class EpisodesDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // display episodes by id with rxswift
-        service.fetchEpisodesWithId(id: ID ?? 1).subscribe(onNext:{ model in
+        service.fetchEpisodesWithId(id: ID ?? 1, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                 self.charactersLabel.text = model[0].characters!.joined(separator: ",")
 

@@ -21,7 +21,7 @@ class QuoteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         // get the quotes with rxswift
-               service.fetchQuotes().subscribe(onNext:{ model in
+               service.fetchQuotes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
                 print(model)
 

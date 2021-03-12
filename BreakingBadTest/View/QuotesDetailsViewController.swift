@@ -18,7 +18,7 @@ class QuotesDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // display quotes by id with rxswift
-        service.fetchQuoteswithID(id : quoteID ?? 1).subscribe(onNext:{ model in
+        service.fetchQuoteswithID(id : quoteID ?? 2, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
             DispatchQueue.main.async {
                
 
