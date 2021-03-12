@@ -57,6 +57,7 @@ extension Data {
     }
 
     func to<T>(type: T.Type) -> T {
+//        return   self.reversed().reduce(0) { $0 << 8 + String($1) } as! T
         return self.withUnsafeBytes { $0.load(as: T.self) }
     }
 }

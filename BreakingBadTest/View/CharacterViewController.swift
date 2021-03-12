@@ -9,19 +9,22 @@ import UIKit
 import RxCocoa
 import RxSwift
 import SDWebImage
+import CryptoKit
+import CommonCrypto
 class CharacterViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
    private let service = ModelService()
     
-  
+    private let encryptedAndDecryptedData = EncryptAndDecrypt()
+    
     @IBOutlet weak var tableView: UITableView!
     var model = [CharactersModel]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UserDefaults.standard.removeObject(forKey: "encryptedData")
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -36,7 +39,22 @@ class CharacterViewController: UIViewController {
 
            }).disposed(by: disposeBag)
 
-    
+        let message       = "Don´t try to read this text. Top Secret Stuff"
+        let messageData   = Array(message.utf8)
+        let keyData       = Array("12345678901234567890123456789012".utf8)
+        let ivData        = Array("abcdefghijklmnop".utf8)
+//        let encryptedData = EncryptAndDecrypt.testCrypt(<#T##self: EncryptAndDecrypt##EncryptAndDecrypt#>)
+        let encryptedData = encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
+        let decryptedData = encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
+        _     = String(bytes:decryptedData, encoding:String.Encoding.utf8)!
+
+        print("message:       \(message)");
+        print("messageData:   \(NSData(bytes:messageData,   length:messageData.count))");
+        print("keyData:       \(NSData(bytes:keyData,       length:keyData.count))");
+        print("ivData:        \(NSData(bytes:ivData,        length:ivData.count))");
+        print("encryptedData: \(NSData(bytes:encryptedData, length:encryptedData.count))");
+        print("decryptedData: \(NSData(bytes:decryptedData, length:decryptedData.count))");
+        print("decrypted:     \(String(bytes:decryptedData,encoding:String.Encoding.utf8)!)")
       
     }
     
