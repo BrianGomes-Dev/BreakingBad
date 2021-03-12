@@ -35,17 +35,8 @@ class CharacterViewController: UIViewController {
            
 
            }).disposed(by: disposeBag)
-//               service.fetchCharacters().subscribe(onNext:{ model in
-//                self.model.append(contentsOf: model)
-//                print("mycount is \(self.model.count)")
-//                print(self.model)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//
-//
-//               }).disposed(by: disposeBag)
 
+    
       
     }
     
