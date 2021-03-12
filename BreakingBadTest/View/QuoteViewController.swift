@@ -52,5 +52,13 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "quotedetailsVC") as! QuotesDetailsViewController
+      
+        vc.quoteID = model[indexPath.row].quote_id
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

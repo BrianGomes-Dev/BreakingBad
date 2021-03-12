@@ -57,5 +57,13 @@ extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "episdoedetailsVC") as! EpisodesDetailsViewController
+      
+        vc.ID = model[indexPath.row].episodeID
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
