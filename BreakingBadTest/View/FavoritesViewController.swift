@@ -22,6 +22,11 @@ class FavoritesViewController: UIViewController {
 
     super.viewWillAppear(animated)
 
+       
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [String] {
             print("result is \(result)")
             for i in 0..<result.count {
@@ -36,11 +41,7 @@ class FavoritesViewController: UIViewController {
             print(favList.count)
                 self.favoriteTableView.reloadData()
             }
-    }
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        }
 
     }
     
@@ -53,8 +54,11 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
 
         if favList.count < 0 {
             self.noFavoriteLabel.isHidden = false
-        } else if favList.count >= 0 {
+            self.favoriteTableView.isHidden = true
+            return 0
+        } else if favList.count > 0 {
             self.noFavoriteLabel.isHidden = true
+            self.favoriteTableView.isHidden = false
         return favList.count
         }
         
