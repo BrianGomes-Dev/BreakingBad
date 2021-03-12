@@ -21,12 +21,8 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
     super.viewWillAppear(animated)
-
-       
-
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        favList.removeAll()
+        print(favList.count)
         if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [String] {
             print("result is \(result)")
             for i in 0..<result.count {
@@ -42,6 +38,11 @@ class FavoritesViewController: UIViewController {
                 self.favoriteTableView.reloadData()
             }
         }
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
 
     }
     
