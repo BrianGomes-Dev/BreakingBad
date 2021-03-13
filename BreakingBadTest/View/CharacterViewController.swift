@@ -24,7 +24,7 @@ class CharacterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.removeObject(forKey: "encryptedData")
+//        UserDefaults.standard.removeObject(forKey: "encryptedData")
         tableView.delegate = self
         tableView.dataSource = self
 

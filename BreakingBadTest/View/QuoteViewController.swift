@@ -45,7 +45,7 @@ class QuoteViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                }).disposed(by: disposeBag)
-        UserDefaults.standard.removeObject(forKey: "encryptedData")
+//        UserDefaults.standard.removeObject(forKey: "encryptedData")
     }
     
     // add tp favorite clicked
@@ -117,7 +117,9 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel!.text = model[indexPath.row].author
         cell.subtitleLabel!.text =  model[indexPath.row].quote
         
-
+        if favListArray.contains(cell.textLabel!.text!) {
+            cell.favoriteButton.setImage(self.filledStar,for: .normal)
+        }
        
         cell.favoriteButton.tag = indexPath.row
        
