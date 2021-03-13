@@ -15,12 +15,10 @@ class EpisodeViewController: UIViewController {
     private let disposeBag = DisposeBag()
    var model = [EpisodesModel]()
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+    override func viewWillAppear(_ animated: Bool) {
+
+    super.viewWillAppear(animated)
+        model.removeAll()
         // get the episodes with rxswift
        
                service.fetchEpisodes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
@@ -32,11 +30,18 @@ class EpisodeViewController: UIViewController {
                }).disposed(by: disposeBag)
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+       
+    
 
 
 
 }
-
+}
 // table view delegates and datasource
 extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

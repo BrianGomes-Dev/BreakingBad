@@ -21,13 +21,10 @@ class CharacterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var model = [CharactersModel]()
     
+    override func viewWillAppear(_ animated: Bool) {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        UserDefaults.standard.removeObject(forKey: "encryptedData")
-        tableView.delegate = self
-        tableView.dataSource = self
-
+    super.viewWillAppear(animated)
+        model.removeAll()
         service.fetchCharacters(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
             self.model.append(contentsOf: model)
             print("mycount is \(self.model.count)")
@@ -38,24 +35,16 @@ class CharacterViewController: UIViewController {
            
 
            }).disposed(by: disposeBag)
+    }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        UserDefaults.standard.removeObject(forKey: "encryptedData")
+        tableView.delegate = self
+        tableView.dataSource = self
 
-        let message       = "Don´t try to read this text. Top Secret Stuff"
-        let messageData   = Array(message.utf8)
-        let keyData       = Array("12345678901234567890123456789012".utf8)
-        let ivData        = Array("abcdefghijklmnop".utf8)
-//        let encryptedData = EncryptAndDecrypt.testCrypt(<#T##self: EncryptAndDecrypt##EncryptAndDecrypt#>)
-        let encryptedData = encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
-        let decryptedData = encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
-        _     = String(bytes:decryptedData, encoding:String.Encoding.utf8)!
-
-        print("message:       \(message)");
-        print("messageData:   \(NSData(bytes:messageData,   length:messageData.count))");
-        print("keyData:       \(NSData(bytes:keyData,       length:keyData.count))");
-        print("ivData:        \(NSData(bytes:ivData,        length:ivData.count))");
-        print("encryptedData: \(NSData(bytes:encryptedData, length:encryptedData.count))");
-        print("decryptedData: \(NSData(bytes:decryptedData, length:decryptedData.count))");
-        print("decrypted:     \(String(bytes:decryptedData,encoding:String.Encoding.utf8)!)")
-      
     }
     
 

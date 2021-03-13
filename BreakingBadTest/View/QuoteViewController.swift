@@ -27,15 +27,7 @@ class QuoteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
-
-
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        tableView.delegate = self
-        tableView.dataSource = self
+        model.removeAll()
         // get the quotes with rxswift
                service.fetchQuotes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
@@ -45,6 +37,14 @@ class QuoteViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                }).disposed(by: disposeBag)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         UserDefaults.standard.removeObject(forKey: "encryptedData")
     }
     
@@ -58,7 +58,7 @@ class QuoteViewController: UIViewController {
     if sender.isSelected == true {
         sender.setImage(unfilledStar,for: .normal)
         sender.isSelected = false
-        if let index = favListArray.firstIndex(of: model[sender.tag].author!) {
+        if let index = favListArray.firstIndex(of: model[sender.tag].quote!) {
             favListArray.remove(at: index)
     }
       
@@ -73,7 +73,7 @@ class QuoteViewController: UIViewController {
    
            
             sender.isSelected = true
-            self.favListArray.append((cell.titleLabel?.text)!)
+            self.favListArray.append((cell.subtitleLabel?.text)!)
 
             let message       = cell.titleLabel?.text
             let messageData   = Array(message!.utf8)
@@ -117,7 +117,7 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel!.text = model[indexPath.row].author
         cell.subtitleLabel!.text =  model[indexPath.row].quote
         
-        if favListArray.contains(model[indexPath.row].author!) {
+        if favListArray.contains(cell.subtitleLabel.text!) {
             cell.favoriteButton.setImage(filledStar,for: .normal)
         } else {
             cell.favoriteButton.setImage(unfilledStar,for: .normal)
