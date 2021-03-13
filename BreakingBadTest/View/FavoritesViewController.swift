@@ -54,17 +54,17 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if favList.count < 0 {
+        if favList.count == 0 {
             self.noFavoriteLabel.isHidden = false
             self.favoriteTableView.isHidden = true
             return 0
-        } else if favList.count > 0 {
+        } else  {
             self.noFavoriteLabel.isHidden = true
             self.favoriteTableView.isHidden = false
         return favList.count
         }
         
-        return favList.count
+//        return favList.count
 
     }
     
