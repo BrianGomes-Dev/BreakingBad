@@ -8,35 +8,52 @@
 import UIKit
 import CryptoKit
 import CommonCrypto
+import RxSwift
+import RxCocoa
 class FavoritesViewController: UIViewController {
-
+private let favService = ModelService()
     @IBOutlet weak var noFavoriteLabel: UILabel!
     @IBOutlet weak var favoriteTableView: UITableView!
     private let encryptedAndDecryptedData = EncryptAndDecrypt()
    private var favList = [String]()
-   
+    private let disposeBag = DisposeBag()
+   private var favModel = [QuotesModel]()
     let filledStar = UIImage(named: "stardeep.png")
    
     
     override func viewWillAppear(_ animated: Bool) {
 
     super.viewWillAppear(animated)
-        favList.removeAll()
-       favList = []
+        favModel.removeAll()
+       favModel = []
         print(favList)
-        if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [String] {
+        if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
             print("result is \(result)")
             for i in 0..<result.count {
-                self.favList.append(result[i])
-            let messageData   = Array(result[i].utf8)
+               
+                
+                favService.fetchQuoteswithID(id : result[i] , query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
+                    self.favModel.append(contentsOf: model)
+                    DispatchQueue.main.async {
+                        self.favoriteTableView.reloadData()
+                    }
+                   
+             
+                }).disposed(by: disposeBag)
+                
+                
+                
+                
+//                self.favList.append(result[i])
+            let messageData   = Array("\(result[i])".utf8)
             let keyData       = Array("12345678901234567890123456789012".utf8)
             let ivData        = Array("abcdefghijklmnop".utf8)
             let encryptedData = encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
             let decryptedData = encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
             print("decrypted:     \(String(bytes:decryptedData,encoding:String.Encoding.utf8)!)")
 
-            print(favList.count)
-                self.favoriteTableView.reloadData()
+           
+               
             }
         }
 
@@ -54,26 +71,28 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if favList.count == 0 {
+        if favModel.count == 0 {
             self.noFavoriteLabel.isHidden = false
             self.favoriteTableView.isHidden = true
             return 0
         } else  {
             self.noFavoriteLabel.isHidden = true
             self.favoriteTableView.isHidden = false
-        return favList.count
+        return favModel.count
         }
         
-//        return favList.count
+
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell",for: indexPath)
-
-        cell.textLabel?.text = favList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell",for: indexPath) as! FavoriteTableViewCell
+        cell.favAuthorLabel.text = favModel[indexPath.row].author
+        cell.favQuoteLabel.text = favModel[indexPath.row].quote
+       
         
-        cell.accessoryView = UIImageView(image: filledStar)
+        
+       
 
         return cell
     }

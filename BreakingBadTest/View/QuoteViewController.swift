@@ -17,7 +17,7 @@ class QuoteViewController: UIViewController {
     
     private let encryptedAndDecryptedData = EncryptAndDecrypt()
     
-   private var favListArray = [String]()
+   private var favListArray = [Int]()
     private let disposeBag = DisposeBag()
    
     
@@ -45,7 +45,7 @@ class QuoteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        UserDefaults.standard.removeObject(forKey: "encryptedData")
+//        UserDefaults.standard.removeObject(forKey: "encryptedData")
     }
     
     // add tp favorite clicked
@@ -58,9 +58,15 @@ class QuoteViewController: UIViewController {
     if sender.isSelected == true {
         sender.setImage(unfilledStar,for: .normal)
         sender.isSelected = false
-        if let index = favListArray.firstIndex(of: model[sender.tag].quote!) {
-            favListArray.remove(at: index)
-    }
+//        if let index = favListArray.firstIndex(of: model[sender.tag].quote!) {
+        if let favArrays =  UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
+        
+        if favArrays.contains(model[sender.tag].quote_id!) {
+            favListArray.remove(at: model[sender.tag].quote_id!)
+        }
+        }
+        
+//    }
       
 
 
@@ -73,7 +79,7 @@ class QuoteViewController: UIViewController {
    
            
             sender.isSelected = true
-            self.favListArray.append((cell.subtitleLabel?.text)!)
+            self.favListArray.append((self.model[sender.tag].quote_id)!)
 
             let message       = cell.titleLabel?.text
             let messageData   = Array(message!.utf8)
@@ -117,12 +123,14 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel!.text = model[indexPath.row].author
         cell.subtitleLabel!.text =  model[indexPath.row].quote
         
-        if favListArray.contains(cell.subtitleLabel.text!) {
+        if let favArrays =  UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
+        
+        if favArrays.contains(model[indexPath.row].quote_id!) {
             cell.favoriteButton.setImage(filledStar,for: .normal)
         } else {
             cell.favoriteButton.setImage(unfilledStar,for: .normal)
         }
-       
+        }
         cell.favoriteButton.tag = indexPath.row
        
         cell.favoriteButton.addTarget(self, action: #selector(addToFav(_:)), for: .touchUpInside)
