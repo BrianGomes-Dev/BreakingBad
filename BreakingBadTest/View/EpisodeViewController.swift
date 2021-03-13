@@ -25,7 +25,7 @@ class EpisodeViewController: UIViewController {
        
                service.fetchEpisodes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
-               
+                print(model.count)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

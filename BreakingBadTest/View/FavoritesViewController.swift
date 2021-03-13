@@ -22,7 +22,8 @@ class FavoritesViewController: UIViewController {
 
     super.viewWillAppear(animated)
         favList.removeAll()
-        print(favList.count)
+       favList = []
+        print(favList)
         if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [String] {
             print("result is \(result)")
             for i in 0..<result.count {

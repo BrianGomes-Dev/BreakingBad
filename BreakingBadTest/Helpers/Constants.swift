@@ -10,7 +10,7 @@ struct Constants {
 
     //Base addresses
     static var BASE_URL = "https://www.breakingbadapi.com"
-    
+    // end points
     static var GET_QUOTES = "/api/quotes"
     static var GET_CHARACTERS = "/api/characters"
 
