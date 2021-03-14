@@ -27,11 +27,11 @@ class CharacterDetailsViewController: UIViewController {
         service.fetchCharactersWithId(id: charID ?? 1, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
 //            self.model.append(contentsOf: model)
             DispatchQueue.main.async {
-                self.birthdayLabel.text = model[0].birthday
-                self.nicknameLabel.text = model[0].nickname
-                self.nameLabel.text = model[0].name
-                self.portrayedLabel.text = model[0].portrayed
-                self.occupationlabel.text = model[0].occupation?.joined(separator: ",")
+                self.birthdayLabel.text = "Birthday: \(model[0].birthday ?? "")"
+                self.nicknameLabel.text = "NickName: \(model[0].nickname ?? "")"
+                self.nameLabel.text = "Name: \(model[0].name ?? "")"
+                self.portrayedLabel.text = "Actor: \(model[0].portrayed ?? "")"
+                self.occupationlabel.text = "Occupation: \(model[0].occupation?.joined(separator: ",") ?? "")"
                     
                 
                 self.imageView.sd_setImage(with: URL(string: model[0].img!), placeholderImage: UIImage(named: ""))
