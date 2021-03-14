@@ -73,39 +73,32 @@ class QuoteViewController: UIViewController {
    @objc  func addToFav(_ sender: UIButton) {
 
     
-    let cell = self.tableView.cellForRow(at: NSIndexPath.init(row: sender.tag, section: 0) as IndexPath) as! QuoteTableViewCell
     
-    
-    if sender.isSelected == true {
-        sender.setImage(unfilledStar,for: .normal)
+    if sender.currentImage == filledStar  {
         sender.isSelected = false
+
+       
         if let receivedData = KeyChain.load(key: "quoteids") {
-            
-            do {
-               
-                let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
-                if result!.contains(model[sender.tag].quote_id!) {
-                    favListArray.remove(at: model[sender.tag].quote_id!)
-                }
-            } catch {
-                
+            let result = NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+            if result!.contains(model[sender.tag].quote_id!) {
+
+                    let alert = UIAlertController(title: "", message: "Added already to your favorites! ", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+
+
             }
         }
 
-        
-
-      
-
 
     } else {
-        
+        sender.isSelected = true
         // alert action
         let alert = UIAlertController(title: "", message: "Do you really want to add to favorites? ", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { (action : UIAlertAction) in
             sender.setImage(self.filledStar,for: .normal)
    
            
-            sender.isSelected = true
+          
             
             
             
@@ -127,24 +120,10 @@ class QuoteViewController: UIViewController {
                     
                 }
             } else {
-//                self.favListArray.append((self.model[sender.tag].quote_id)!)
-//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
-//            let status = KeyChain.save(key: "quoteids", data: data)
-//                print("status is \(status)")
+
             }
            
-
-//            do {
-//
-//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
-//            let status = KeyChain.save(key: "quoteids", data: data)
-//                print("status is \(status)")
-//
-//            } catch let error {
-//                print(error)
-//            }
-     
-
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         

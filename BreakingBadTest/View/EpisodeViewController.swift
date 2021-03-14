@@ -19,6 +19,7 @@ class EpisodeViewController: UIViewController {
 
     super.viewWillAppear(animated)
         model.removeAll()
+        model = []
         // get the episodes with rxswift
        
                service.fetchEpisodes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
@@ -60,7 +61,7 @@ extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "episdoedetailsVC") as! EpisodesDetailsViewController
       
-        vc.ID = model[indexPath.row].episodeID
+        vc.ID = model[indexPath.row].episode_id
         
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
