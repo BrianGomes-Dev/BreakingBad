@@ -51,10 +51,11 @@ extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "episodeCell")
+        if indexPath.row < model.count {
         cell?.textLabel?.text = model[indexPath.row].title
         cell?.detailTextLabel?.text =  model[indexPath.row].season
         
-        
+        }
         return cell!
     }
     

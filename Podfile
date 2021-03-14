@@ -7,10 +7,10 @@ target 'BreakingBadTest' do
 
   # Pods for BreakingBadTest
 pod 'RxSwift'
-pod 'Alamofire', '~> 5.2'
+#pod 'Alamofire', '~> 5.2'
 pod 'RxCocoa'
 pod 'SDWebImage', '~> 5.0'
-pod 'Locksmith'
+#pod 'Locksmith'
 
   target 'BreakingBadTestTests' do
     inherit! :search_paths

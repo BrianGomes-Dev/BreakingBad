@@ -7,14 +7,14 @@
 
 import Foundation
 struct EpisodesModel : Codable {
-    var episodeID: Int?
+    var episode_id: Int?
        var season,title: String?
 //       var  episode: Int?
        var airDate: String?
        var characters: [String]?
 
        enum CodingKeys: String, CodingKey {
-           case episodeID
+           case episode_id
            case title, season
 //                case episode
            case airDate
