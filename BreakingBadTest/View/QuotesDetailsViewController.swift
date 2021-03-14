@@ -13,6 +13,7 @@ class QuotesDetailsViewController: UIViewController {
     private let service = ModelService()
     private let disposeBag = DisposeBag()
     private var model = [QuotesModel]()
+   
     @IBOutlet weak var quoteidLabel: UILabel!
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!

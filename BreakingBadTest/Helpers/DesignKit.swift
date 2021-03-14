@@ -18,3 +18,4 @@ class SetShadow{
         view.layer.shadowOpacity = 0.6
     }
 }
+

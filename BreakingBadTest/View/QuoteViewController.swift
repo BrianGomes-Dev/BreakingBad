@@ -65,7 +65,7 @@ class QuoteViewController: UIViewController {
        
         tableView.delegate = self
         tableView.dataSource = self
-        
+      
 
     }
     
@@ -184,5 +184,10 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125
     }
 }
