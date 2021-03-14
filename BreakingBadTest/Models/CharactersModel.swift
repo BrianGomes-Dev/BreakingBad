@@ -10,8 +10,8 @@ import Foundation
 struct CharactersModel : Codable {
   
     
-    
-    
+    ////
+    ////
         var char_id: Int?
         var name, birthday: String?
         var occupation: [String]?
