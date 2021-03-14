@@ -24,11 +24,31 @@ class QuoteViewController: UIViewController {
     
     let filledStar = UIImage(named: "stardeep.png")
     let unfilledStar = UIImage(named: "savedmsg.png")
+    func getFavFromKeychain() {
+        if let receivedData = KeyChain.load(key: "quoteids") {
+            
+            do {
+               
+                let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+                for i in 0..<result!.count {
+                    self.favListArray.append(result![i])
+                }
+                    let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
+                let status = KeyChain.save(key: "quoteids", data: data)
+                    print("status is \(status)")
+            
+            } catch {
+                
+            }
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
         model.removeAll()
+        favListArray.removeAll()
+        getFavFromKeychain()
         // get the quotes with rxswift
                service.fetchQuotes(query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
                 self.model.append(contentsOf: model)
@@ -86,30 +106,45 @@ class QuoteViewController: UIViewController {
    
            
             sender.isSelected = true
-            self.favListArray.append((self.model[sender.tag].quote_id)!)
-
-            do {
             
-                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
-            let status = KeyChain.save(key: "quoteids", data: data)
-                print("status is \(status)")
             
-            } catch let error {
-                print(error)
+            
+            
+            
+            if let receivedData = KeyChain.load(key: "quoteids") {
+                
+                do {
+                   
+                    let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+                    if !result!.contains(self.model[sender.tag].quote_id!) {
+                        self.favListArray.append((self.model[sender.tag].quote_id)!)
+                        let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
+                    let status = KeyChain.save(key: "quoteids", data: data)
+                        print("status is \(status)")
+                    }
+                    
+                } catch {
+                    
+                }
+            } else {
+//                self.favListArray.append((self.model[sender.tag].quote_id)!)
+//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
+//            let status = KeyChain.save(key: "quoteids", data: data)
+//                print("status is \(status)")
             }
-     
-            let message       = cell.titleLabel?.text
-            let messageData   = Array(message!.utf8)
-            let keyData       = Array("12345678901234567890123456789012".utf8)
-            let ivData        = Array("abcdefghijklmnop".utf8)
- 
-            let encryptedData = self.encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
-
            
 
+//            do {
+//
+//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
+//            let status = KeyChain.save(key: "quoteids", data: data)
+//                print("status is \(status)")
+//
+//            } catch let error {
+//                print(error)
+//            }
+     
 
-            let decryptedData = self.encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
-            _  = String(bytes:decryptedData, encoding:String.Encoding.utf8)!
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         

