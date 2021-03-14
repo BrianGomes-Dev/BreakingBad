@@ -71,7 +71,7 @@ extension CharacterViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "characterDetailsVC") as! CharacterDetailsViewController
       
-        vc.charID = model[indexPath.row].charID
+        vc.charID = model[indexPath.row].char_id
         
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)

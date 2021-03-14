@@ -12,7 +12,7 @@ struct CharactersModel : Codable {
     
     
     
-        var charID: Int?
+        var char_id: Int?
         var name, birthday: String?
         var occupation: [String]?
         var img: String?
@@ -21,7 +21,7 @@ struct CharactersModel : Codable {
         var nickname, portrayed: String?
 
         enum CodingKeys: String, CodingKey {
-            case charID
+            case char_id
             case name, birthday, occupation, img, status, appearance, nickname, portrayed
         }
     }

@@ -10,6 +10,7 @@ import CryptoKit
 import CommonCrypto
 import RxSwift
 import RxCocoa
+import Security
 class FavoritesViewController: UIViewController {
 private let favService = ModelService()
     @IBOutlet weak var noFavoriteLabel: UILabel!
@@ -27,34 +28,46 @@ private let favService = ModelService()
         favModel.removeAll()
        favModel = []
         print(favList)
+        if let receivedData = KeyChain.load(key: "quoteids") {
+            
+            do {
+               
+                let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+
+                for i in 0..<result!.count {
+                   
+                    
+                    favService.fetchQuoteswithID(id : result![i] , query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
+                        self.favModel.append(contentsOf: model)
+                        DispatchQueue.main.async {
+                            self.favoriteTableView.reloadData()
+                        }
+                       
+                 
+                    }).disposed(by: disposeBag)
+                    
+                    
+                    
+                    
+    //                self.favList.append(result[i])
+                    let messageData   = Array("\(result![i])".utf8)
+                let keyData       = Array("12345678901234567890123456789012".utf8)
+                let ivData        = Array("abcdefghijklmnop".utf8)
+                let encryptedData = encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
+                let decryptedData = encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
+                print("decrypted:     \(String(bytes:decryptedData,encoding:String.Encoding.utf8)!)")
+
+               
+                   
+                }
+            print("result: ", result)
+            } catch let error {
+                print(error)
+            }
+        }
         if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
             print("result is \(result)")
-            for i in 0..<result.count {
-               
-                
-                favService.fetchQuoteswithID(id : result[i] , query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
-                    self.favModel.append(contentsOf: model)
-                    DispatchQueue.main.async {
-                        self.favoriteTableView.reloadData()
-                    }
-                   
-             
-                }).disposed(by: disposeBag)
-                
-                
-                
-                
-//                self.favList.append(result[i])
-            let messageData   = Array("\(result[i])".utf8)
-            let keyData       = Array("12345678901234567890123456789012".utf8)
-            let ivData        = Array("abcdefghijklmnop".utf8)
-            let encryptedData = encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
-            let decryptedData = encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
-            print("decrypted:     \(String(bytes:decryptedData,encoding:String.Encoding.utf8)!)")
-
            
-               
-            }
         }
 
     }

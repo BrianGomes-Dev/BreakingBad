@@ -10,6 +10,7 @@ import RxCocoa
 import RxSwift
 import CryptoKit
 import CommonCrypto
+import Security
 class QuoteViewController: UIViewController {
    private  let service = ModelService()
     @IBOutlet weak var tableView: UITableView!
@@ -45,7 +46,7 @@ class QuoteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        UserDefaults.standard.removeObject(forKey: "encryptedData")
+
     }
     
     // add tp favorite clicked
@@ -58,7 +59,7 @@ class QuoteViewController: UIViewController {
     if sender.isSelected == true {
         sender.setImage(unfilledStar,for: .normal)
         sender.isSelected = false
-//        if let index = favListArray.firstIndex(of: model[sender.tag].quote!) {
+
         if let favArrays =  UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
         
         if favArrays.contains(model[sender.tag].quote_id!) {
@@ -66,7 +67,7 @@ class QuoteViewController: UIViewController {
         }
         }
         
-//    }
+
       
 
 
@@ -80,6 +81,48 @@ class QuoteViewController: UIViewController {
            
             sender.isSelected = true
             self.favListArray.append((self.model[sender.tag].quote_id)!)
+            
+//            let server = "example.com"
+//            let username = "username"
+//            let password = "password".data(using: .utf8)!
+//            let attributes: [String: Any] = [
+//                (kSecClass as String): kSecClassInternetPassword,
+//                (kSecAttrServer as String): server,
+//                (kSecAttrAccount as String): username,
+//                (kSecValueData as String): password]
+//            // Let's add the item to the Keychain! 😄
+//            SecItemAdd(attributes as CFDictionary, nil) == noErr
+            do {
+            
+                let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
+            let status = KeyChain.save(key: "quoteids", data: data)
+                print("status is \(status)")
+            
+            } catch let error {
+                print(error)
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           
 
             let message       = cell.titleLabel?.text
             let messageData   = Array(message!.utf8)
