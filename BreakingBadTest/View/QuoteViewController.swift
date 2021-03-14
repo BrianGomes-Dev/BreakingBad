@@ -164,7 +164,7 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
                     cell.favoriteButton.setImage(unfilledStar,for: .normal)
                 }
             } catch {
-                
+                print(error)
             }
         }
 
