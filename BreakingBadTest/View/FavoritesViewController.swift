@@ -45,11 +45,7 @@ private let favService = ModelService()
                        
                  
                     }).disposed(by: disposeBag)
-                    
-                    
-                    
-                    
-    //                self.favList.append(result[i])
+ 
                     let messageData   = Array("\(result![i])".utf8)
                 let keyData       = Array("12345678901234567890123456789012".utf8)
                 let ivData        = Array("abcdefghijklmnop".utf8)
@@ -65,10 +61,10 @@ private let favService = ModelService()
                 print(error)
             }
         }
-        if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
-            print("result is \(result)")
-           
-        }
+//        if  let result = UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
+//            print("result is \(result)")
+//
+//        }
 
     }
     override func viewDidLoad() {
@@ -100,10 +96,12 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell",for: indexPath) as! FavoriteTableViewCell
+        if indexPath.row < favModel.count {
+            print("")
         cell.favAuthorLabel.text = favModel[indexPath.row].author
         cell.favQuoteLabel.text = favModel[indexPath.row].quote
        
-        
+        }
         
        
 

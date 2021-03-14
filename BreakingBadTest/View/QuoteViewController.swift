@@ -59,13 +59,19 @@ class QuoteViewController: UIViewController {
     if sender.isSelected == true {
         sender.setImage(unfilledStar,for: .normal)
         sender.isSelected = false
+        if let receivedData = KeyChain.load(key: "quoteids") {
+            
+            do {
+               
+                let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+                if result!.contains(model[sender.tag].quote_id!) {
+                    favListArray.remove(at: model[sender.tag].quote_id!)
+                }
+            } catch {
+                
+            }
+        }
 
-        if let favArrays =  UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
-        
-        if favArrays.contains(model[sender.tag].quote_id!) {
-            favListArray.remove(at: model[sender.tag].quote_id!)
-        }
-        }
         
 
       
@@ -81,17 +87,7 @@ class QuoteViewController: UIViewController {
            
             sender.isSelected = true
             self.favListArray.append((self.model[sender.tag].quote_id)!)
-            
-//            let server = "example.com"
-//            let username = "username"
-//            let password = "password".data(using: .utf8)!
-//            let attributes: [String: Any] = [
-//                (kSecClass as String): kSecClassInternetPassword,
-//                (kSecAttrServer as String): server,
-//                (kSecAttrAccount as String): username,
-//                (kSecValueData as String): password]
-//            // Let's add the item to the Keychain! 😄
-//            SecItemAdd(attributes as CFDictionary, nil) == noErr
+
             do {
             
                 let data = try NSKeyedArchiver.archivedData(withRootObject: self.favListArray, requiringSecureCoding: true)
@@ -101,29 +97,7 @@ class QuoteViewController: UIViewController {
             } catch let error {
                 print(error)
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-           
-
+     
             let message       = cell.titleLabel?.text
             let messageData   = Array(message!.utf8)
             let keyData       = Array("12345678901234567890123456789012".utf8)
@@ -132,7 +106,7 @@ class QuoteViewController: UIViewController {
             let encryptedData = self.encryptedAndDecryptedData.testCrypt(data:messageData,   keyData:keyData, ivData:ivData, operation:kCCEncrypt)!
 
            
-            UserDefaults.standard.setValue(self.favListArray, forKey: "encryptedData")
+
 
             let decryptedData = self.encryptedAndDecryptedData.testCrypt(data:encryptedData, keyData:keyData, ivData:ivData, operation:kCCDecrypt)!
             _  = String(bytes:decryptedData, encoding:String.Encoding.utf8)!
@@ -165,15 +139,21 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell") as! QuoteTableViewCell
         cell.titleLabel!.text = model[indexPath.row].author
         cell.subtitleLabel!.text =  model[indexPath.row].quote
-        
-        if let favArrays =  UserDefaults.standard.object(forKey: "encryptedData") as? [Int] {
-        
-        if favArrays.contains(model[indexPath.row].quote_id!) {
-            cell.favoriteButton.setImage(filledStar,for: .normal)
-        } else {
-            cell.favoriteButton.setImage(unfilledStar,for: .normal)
+        if let receivedData = KeyChain.load(key: "quoteids") {
+            
+            do {
+               
+                let result = try NSKeyedUnarchiver.unarchiveObject(with :receivedData) as? [Int]
+                if result!.contains(model[indexPath.row].quote_id!) {
+                    cell.favoriteButton.setImage(filledStar,for: .normal)
+                } else {
+                    cell.favoriteButton.setImage(unfilledStar,for: .normal)
+                }
+            } catch {
+                
+            }
         }
-        }
+
         cell.favoriteButton.tag = indexPath.row
        
         cell.favoriteButton.addTarget(self, action: #selector(addToFav(_:)), for: .touchUpInside)
