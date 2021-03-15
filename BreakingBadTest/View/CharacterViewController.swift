@@ -48,7 +48,9 @@ class CharacterViewController: UIViewController {
     }
     
 
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 
 }

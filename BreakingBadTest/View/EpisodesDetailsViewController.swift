@@ -51,6 +51,10 @@ class EpisodesDetailsViewController: UIViewController {
     }
     
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func backBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

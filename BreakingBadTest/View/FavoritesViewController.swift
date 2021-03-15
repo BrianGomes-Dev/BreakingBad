@@ -74,6 +74,9 @@ private let favService = ModelService()
     }
     
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
    
 
 }

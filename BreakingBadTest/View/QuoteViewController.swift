@@ -69,6 +69,10 @@ class QuoteViewController: UIViewController {
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // add tp favorite clicked
    @objc  func addToFav(_ sender: UIButton) {
 

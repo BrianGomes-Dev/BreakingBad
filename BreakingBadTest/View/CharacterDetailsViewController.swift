@@ -50,6 +50,11 @@ class CharacterDetailsViewController: UIViewController {
      
         }).disposed(by: disposeBag)
 
+       
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
 

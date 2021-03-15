@@ -46,7 +46,9 @@ class QuotesDetailsViewController: UIViewController {
         
     }
     
-
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
  
     @IBAction func backBtnpressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

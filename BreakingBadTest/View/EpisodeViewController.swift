@@ -37,11 +37,12 @@ class EpisodeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
        
-    
-
-
-
 }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 // table view delegates and datasource
 extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
