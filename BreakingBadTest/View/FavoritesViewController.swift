@@ -94,6 +94,11 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
 
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell",for: indexPath) as! FavoriteTableViewCell
         if indexPath.row < favModel.count {
