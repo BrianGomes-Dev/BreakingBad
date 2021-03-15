@@ -155,8 +155,11 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell") as! QuoteTableViewCell
+        //crash fix
+        if indexPath.row < model.count {
         cell.titleLabel!.text = model[indexPath.row].author
         cell.subtitleLabel!.text =  model[indexPath.row].quote
+        
         if let receivedData = KeyChain.load(key: "quoteids") {
             
             do {
@@ -171,7 +174,7 @@ extension QuoteViewController : UITableViewDelegate, UITableViewDataSource {
                 print(error)
             }
         }
-
+        }
         cell.favoriteButton.tag = indexPath.row
        
         cell.favoriteButton.addTarget(self, action: #selector(addToFav(_:)), for: .touchUpInside)
