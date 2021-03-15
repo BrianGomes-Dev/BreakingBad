@@ -33,11 +33,11 @@ class EpisodesDetailsViewController: UIViewController {
                 self.episodeLabel.text = "Air Date: \(model[0].air_date ?? "")"
                 self.episodeidlLabel.text = "Episode: \(model[0].episode ?? "")"
                 
-                // store data to keychain..example 
+                // store data to keychain
                 let data = Data(from: model[0].season)
                 let status = KeyChain.save(key: "Season", data: data)
                 print("status: ", status)
-                    // retrieving data from keychain an example
+                    // retrieving data from keychain
                 if let receivedData = KeyChain.load(key: "Season") {
                     let result = receivedData.to(type: String.self)
                     print("result: ", result)

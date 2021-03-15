@@ -28,11 +28,11 @@ class QuotesDetailsViewController: UIViewController {
                 self.quoteLabel.text = model[0].quote
                 self.authorLabel.text = model[0].author
 
-                // store data to keychain ..example
+                // store data to keychain
                 let data = Data(from: model[0].author)
                 let status = KeyChain.save(key: "Author", data: data)
                 print("status: ", status)
-                    // retrieving data from keychain an example
+                    // retrieving data from keychain
                 if let receivedData = KeyChain.load(key: "Author") {
                     let result = receivedData.to(type: String.self)
                     print("result: ", result)

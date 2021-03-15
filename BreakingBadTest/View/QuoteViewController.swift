@@ -98,7 +98,7 @@ class QuoteViewController: UIViewController {
         sender.isSelected = true
         // alert action
         let alert = UIAlertController(title: "", message: "Do you really want to add to favorites? ", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: { (action : UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "ОK", style: .default, handler: { (action : UIAlertAction) in
             sender.setImage(self.filledStar,for: .normal)
    
            

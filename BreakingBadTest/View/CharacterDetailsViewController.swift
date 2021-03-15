@@ -36,11 +36,11 @@ class CharacterDetailsViewController: UIViewController {
                 
                 self.imageView.sd_setImage(with: URL(string: model[0].img!), placeholderImage: UIImage(named: ""))
                 
-                // storing data in keychains an example
+                // storing data in keychains
                 let data = Data(from: model[0].name)
                 let status = KeyChain.save(key: "Name", data: data)
                 print("status: ", status)
-                    // retrieving data from keychain an example
+                    // retrieving data from keychain 
                 if let receivedData = KeyChain.load(key: "Name") {
                     let result = receivedData.to(type: String.self)
                     print("result: ", result)

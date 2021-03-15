@@ -111,8 +111,6 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
        
         }
         
-       
-
         return cell
     }
 

