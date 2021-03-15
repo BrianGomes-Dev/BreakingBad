@@ -63,10 +63,14 @@ extension CharacterViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell",for: indexPath) as! CharacterTableViewCell
+        //Crash Fixed
+        if indexPath.row < model.count {
+        
         cell.characterpotrayLabel.text = model[indexPath.row].portrayed ?? ""
        
         cell.characterNameLabel.text = model[indexPath.row].name ?? ""
         cell.characterImageView.sd_setImage(with: URL(string: model[indexPath.row].img!), placeholderImage: UIImage(named: ""))
+        }
         return cell
     }
     
