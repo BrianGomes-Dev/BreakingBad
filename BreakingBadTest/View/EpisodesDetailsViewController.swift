@@ -26,12 +26,12 @@ class EpisodesDetailsViewController: UIViewController {
         service.fetchEpisodesWithId(id: ID ?? 1, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
             self.model.append(contentsOf: model)
             DispatchQueue.main.async {
-                self.charactersLabel.text = model[0].characters!.joined(separator: ",")
+                self.charactersLabel.text = "Cast: "+model[0].characters!.joined(separator: ",")
 
-                self.seasonLabel.text = model[0].season
+                self.seasonLabel.text = "Season: \(model[0].season ?? "")"
                 self.titleLabel.text = model[0].title
-                self.episodeLabel.text = model[0].airDate
-                  
+                self.episodeLabel.text = "Air Date: \(model[0].air_date ?? "")"
+                self.episodeidlLabel.text = "Episode: \(model[0].episode ?? "")"
                 
                 // store data to keychain..example 
                 let data = Data(from: model[0].season)

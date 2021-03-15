@@ -9,15 +9,15 @@ import Foundation
 struct EpisodesModel : Codable {
     var episode_id: Int?
        var season,title: String?
-//       var  episode: Int?
-       var airDate: String?
+       var  episode: String?
+       var air_date: String?
        var characters: [String]?
 
        enum CodingKeys: String, CodingKey {
            case episode_id
            case title, season
-//                case episode
-           case airDate
+           case episode
+           case air_date
            case characters
        }
 }

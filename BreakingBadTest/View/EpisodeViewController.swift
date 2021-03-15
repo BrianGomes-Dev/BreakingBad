@@ -53,7 +53,8 @@ extension EpisodeViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "episodeCell")
         if indexPath.row < model.count {
         cell?.textLabel?.text = model[indexPath.row].title
-        cell?.detailTextLabel?.text =  model[indexPath.row].season
+            cell?.detailTextLabel?.text =  "Seson: \(model[indexPath.row].season ?? "")  Episode: \(model[indexPath.row].episode ?? "")"
+            
         
         }
         return cell!
