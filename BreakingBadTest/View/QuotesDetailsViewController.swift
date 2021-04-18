@@ -28,7 +28,7 @@ class QuotesDetailsViewController: UIViewController {
             DispatchQueue.main.async {
                
 
-           //     self.quoteLabel.text = self.quotesViewModel[0].quote
+                self.quoteLabel.text = self.quotesViewModel[0].quote
                 self.authorLabel.text = self.quotesViewModel[0].author
 
                 // store data to keychain ..example
