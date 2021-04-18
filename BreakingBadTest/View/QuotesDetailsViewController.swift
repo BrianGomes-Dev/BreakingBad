@@ -12,7 +12,8 @@ class QuotesDetailsViewController: UIViewController {
     var quoteID : Int?
     private let service = ModelService()
     private let disposeBag = DisposeBag()
-    private var model = [QuotesModel]()
+   // private var model = [QuotesModel]()
+    private var quotesViewModel = [QuotesViewModel]()
     @IBOutlet weak var quoteidLabel: UILabel!
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -20,12 +21,15 @@ class QuotesDetailsViewController: UIViewController {
         super.viewDidLoad()
         // display quotes by id with rxswift
         service.fetchQuoteswithID(id : quoteID ?? 2, query: "", false, dataTask: URLSession.shared.dataTask(with:completionHandler:)).subscribe(onNext:{ model in
-            self.model.append(contentsOf: model)
+            
+            self.quotesViewModel = model.map({return QuotesViewModel(Quotes: $0)})
+            
+           // self.model.append(contentsOf: model)
             DispatchQueue.main.async {
                
 
-                self.quoteLabel.text = model[0].quote
-                self.authorLabel.text = model[0].author
+           //     self.quoteLabel.text = self.quotesViewModel[0].quote
+                self.authorLabel.text = self.quotesViewModel[0].author
 
                 // store data to keychain ..example
                 let data = Data(from: model[0].author)
